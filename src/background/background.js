@@ -18,7 +18,6 @@ const startChat = () => {
           width: 900,
           height: 1000,
         }, r))
-        console.log(win1)
         tabs[0] = win1.tabs[0]
         const win2 = await new Promise(r => browser.windows.create({
           url: 'https://chat.openai.com/chat',
@@ -27,7 +26,6 @@ const startChat = () => {
           width: 900,
           height: 1000,
         }, r))
-        console.log(win2)
         tabs[1] = win2.tabs[0];
       } else if (message.type == 'ready') {
         if (sender.tab.id == tabs[0].id) {

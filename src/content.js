@@ -15,15 +15,16 @@ const start = async () => {
         isReplier = !message.text
         name = message.name
         other = message.other
-        greeting = message.greeting.replace('{name}', name).replace('{other}', other).replace('{firstMessage}', message.text)
+        greeting = message.greeting
+        await new Promise(r => setTimeout(r, 500))
         if (message.text) {
-          await addMessage(greeting)
+          await addMessage(greeting.replaceAll('{name}', name).replaceAll('{other}', other).replaceAll('{firstMessage}', message.text))
         }
       } else if (message.type == 'replied') {
         const first = !nMessages
         nMessages++
         if (first && isReplier) {
-          await addMessage(greeting)
+          await addMessage(greeting.replaceAll('{name}', name).replaceAll('{other}', other).replaceAll('{firstMessage}', message.text))
         }
         await addMessage(message.text)
       }
