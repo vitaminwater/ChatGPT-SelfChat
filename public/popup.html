@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      margin: 0
+    }
+
+    .root {
+      height: 300px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .root__wrapper {
+      width: 100%;
+      text-align: center;
+    }
+
+    .root__wrapper__h2 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .root__wrapper__h3 {
+      margin-top: 5px;
+      margin-bottom: 0;
+    }
+
+    .root textarea {
+      width: 350px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="root" id="root">
+    <div class="root__wrapper">
+      <b>Welcome</b>
+      <textarea id='question' type='text' placeholder='Type what the first one says, ex: "Which one is the strongest, elephants or hippopotamus?"'></textarea>
+      <button id='start'>Start</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
