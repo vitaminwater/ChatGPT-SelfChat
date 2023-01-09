@@ -5,7 +5,7 @@ if (typeof browser === "undefined") {
 const start = async () => {
   let nMessages = 0
   let isReplier = false
-  let name, other
+  let name, other, greeting
 
   console.log('Start')
   browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
@@ -14,16 +14,15 @@ const start = async () => {
       isReplier = !message.text
       name = message.name
       other = message.other
-      if (message.text) {
-        await addMessage(`Ok today your name is ${name} and you will be discussing with ${other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what ${other} says. You also have an employee called Stant that can do real-world tasks to reach the goal. Here's the problem you want to resolve:\n\n"${message.text}".`)
+      greeting = message.greeting.replace('{name}', name).replace('{other}', other).replace('{firstMessage}', firstMessage)
+      if (message.question) {
+        await addMessage(greeting)
       }
     } else if (message.type == 'replied') {
-      console.log('nMessages', nMessages)
       const first = !nMessages
       nMessages++
-      console.log('nMessages', nMessages)
       if (first && isReplier) {
-        await addMessage(`Ok today your name is ${name} and you will be discussing with ${other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what ${other} says. You also have an employee called Stant that can do real-world tasks to reach the goal. Here is ${other}'s first message:\n\n"${message.text}".`)
+        await addMessage(greeting)
       }
       await addMessage(message.text)
     }
