@@ -11,22 +11,22 @@ const startChat = () => {
       console.log('Received message backend: ', message)
       if (message.type == 'start') {
         chatData = message
-        let win1 = await browser.windows.create({
+        let win1 = await new Promise(r => browser.windows.create({
           url: 'https://chat.openai.com/chat',
           left: 0,
           top: 0,
           width: 900,
           height: 1000,
-        })
+        }, r))
         console.log(win1)
         tabs[0] = win1.tabs[0]
-        const win2 = await browser.windows.create({
+        const win2 = await new Promise(r => browser.windows.create({
           url: 'https://chat.openai.com/chat',
           left: 900,
           top: 0,
           width: 900,
           height: 1000,
-        })
+        }, r))
         console.log(win2)
         tabs[1] = win2.tabs[0];
       } else if (message.type == 'ready') {

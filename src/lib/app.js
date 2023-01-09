@@ -8,9 +8,9 @@ const showTab = (name) => {
 const tabData = {
   'question': '',
   'talker-1-name': 'Phil',
-  'talker-1-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. You also have an employee called Stant that can do real-world tasks to reach the goal. Here's the problem you want to resolve:\n\n"{firstMessage}".`,
+  'talker-1-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. Here's the problem you want to resolve:\n\n"{firstMessage}".`,
   'talker-2-name': 'Joe',
-  'talker-2-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. You also have an employee called Stant that can do real-world tasks to reach the goal. Here is {other}'s first message:\n\n"{firstMessage}".`,
+  'talker-2-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. Here is {other}'s first message:\n\n"{firstMessage}".`,
 }
 
 const setupValues = () => {

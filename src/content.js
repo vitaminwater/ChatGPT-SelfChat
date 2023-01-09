@@ -9,22 +9,26 @@ const start = async () => {
 
   console.log('Start')
   browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
-    console.log('Received message content: ', message)
-    if (message.type == 'init') {
-      isReplier = !message.text
-      name = message.name
-      other = message.other
-      greeting = message.greeting.replace('{name}', name).replace('{other}', other).replace('{firstMessage}', firstMessage)
-      if (message.question) {
-        await addMessage(greeting)
+    try {
+      console.log('Received message content: ', message)
+      if (message.type == 'init') {
+        isReplier = !message.text
+        name = message.name
+        other = message.other
+        greeting = message.greeting.replace('{name}', name).replace('{other}', other).replace('{firstMessage}', message.text)
+        if (message.text) {
+          await addMessage(greeting)
+        }
+      } else if (message.type == 'replied') {
+        const first = !nMessages
+        nMessages++
+        if (first && isReplier) {
+          await addMessage(greeting)
+        }
+        await addMessage(message.text)
       }
-    } else if (message.type == 'replied') {
-      const first = !nMessages
-      nMessages++
-      if (first && isReplier) {
-        await addMessage(greeting)
-      }
-      await addMessage(message.text)
+    } catch(e) {
+      console.log(e)
     }
   });
 
