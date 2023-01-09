@@ -2,15 +2,18 @@
 <html>
 
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
   <style>
     body {
-      margin: 0
+      margin: 0;
+      font-family: 'Roboto';
     }
 
     .root {
       height: 300px;
       width: 400px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-size: cover;
@@ -18,7 +21,7 @@
     }
 
     .root__wrapper {
-      width: 100%;
+      flex: 1;
       text-align: center;
     }
 
@@ -36,15 +39,42 @@
       width: 350px;
       height: 200px;
     }
+    
+    .menu {
+      display: flex;
+      margin: 5px 0;
+    }
+    
+    .menu > a {
+      margin-right: 5px;
+      font-size: 0.7em;
+    }
   </style>
 </head>
 
 <body>
   <div class="root" id="root">
-    <div class="root__wrapper">
-      <b>Welcome</b>
+    <div class="menu">
+      <a href='javascript:void(0)' class='tab' id='subject-tab' style='font-weight: bold;'>Subject</a>
+      <a href='javascript:void(0)' class='tab' id='talker-1-tab'>Talker 1</a>
+      <a href='javascript:void(0)' class='tab' id='talker-2-tab'>Talker 2</a>
+    </div>
+    <div class="root__wrapper" id='subject'>
+      <b>Subject</b><br />
       <textarea id='question' type='text' placeholder='Type what the first one says, ex: "Which one is the strongest, elephants or hippopotamus?"'></textarea>
       <button id='start'>Start</button>
+    </div>
+    <div class="root__wrapper" id='talker-1' style='display: none;'>
+      <b>Talker 1</b><br />
+      <input type='text' id='talker-1-name' type='text' placeholder='ex: Phil' /><br />
+      <textarea id='talker-1-greeting'></textarea>
+      <button id='talker-1-save'>Save</button>
+    </div>
+    <div class="root__wrapper" id='talker-2' style='display: none;'>
+      <b>Talker 2</b><br />
+      <input type='text' id='talker-2-name' type='text' placeholder='ex: Joe' /><br />
+      <textarea id='talker-2-greeting'></textarea>
+      <button id='talker-2-save'>Save</button>
     </div>
   </div>
 

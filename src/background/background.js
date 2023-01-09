@@ -10,7 +10,7 @@ const startChat = () => {
   browser.runtime.onMessage.addListener(async (message, sender) => {
     console.log('Received message backend: ', message)
     if (message.type == 'start') {
-      question = message.text
+      question = message.question
       tabs[0] = (await browser.windows.create({
         url: 'https://chat.openai.com/chat',
         left: 0,
