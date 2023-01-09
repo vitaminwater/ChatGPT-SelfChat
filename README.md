@@ -1,6 +1,6 @@
 # How to install
 
-1. Unzip the archive zip on your computer.
+1. Unzip the [archive zip](https://github.com/vitaminwater/ChatGPT-SelfChat/releases) on your computer.
 2. Open your browser extension management page:
   - For firefox: `about:debugging#/runtime/this-firefox`
   - For chrome: `chrome://extensions/`
