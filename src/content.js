@@ -16,7 +16,7 @@ const start = async () => {
         name = message.name
         other = message.other
         greeting = message.greeting
-        await new Promise(r => setTimeout(r, 500))
+        await new Promise(r => setTimeout(r, 2000))
         if (message.text) {
           await addMessage(greeting.replaceAll('{name}', name).replaceAll('{other}', other).replaceAll('{firstMessage}', message.text))
         }

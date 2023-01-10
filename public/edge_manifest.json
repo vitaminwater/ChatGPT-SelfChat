@@ -1,7 +1,7 @@
 {
-  "name": "datetime",
-  "version": "1.0",
-  "description": "Build a Datetime Extension!",
+  "name": "ChatGPT-SelfChat",
+  "version": "1.0.1",
+  "description": "Makes two instances of chatGPT chat together in two different browser windows.",
   "permissions": [
     "declarativeContent"
   ],
