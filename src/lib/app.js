@@ -13,6 +13,17 @@ const tabData = {
   'talker-2-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. Here is {other}'s first message:\n\n"{firstMessage}".`,
 }
 
+const saveTabData = () => {
+  window.localStorage.setItem("tabData", JSON.stringify(tabData))
+}
+
+const loadTabData = () => {
+  const tabDataJSON = window.localStorage.getItem("tabData")
+  if (tabDataJSON) {
+    Object.assign(tabData, JSON.parse(tabDataJSON))
+  }
+}
+
 const setupValues = () => {
   Object.keys(tabData).forEach(k => {
     const td = tabData[k]
@@ -21,6 +32,7 @@ const setupValues = () => {
       el.value = td
       el.addEventListener('change', e => {
         tabData[k] = e.target.value
+        saveTabData()
       })
     }
   })
@@ -28,6 +40,7 @@ const setupValues = () => {
 
 export class App {
   render() {
+    loadTabData()
     setupValues()
     document.getElementById('start').addEventListener('click', (e) => {
       const question = document.getElementById('question').value
