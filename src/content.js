@@ -34,6 +34,7 @@ const start = async () => {
     }
   });
 
+  await new Promise(r => setTimeout(r, 2000))
   await browser.runtime.sendMessage({type: 'ready'}, response => {
     console.log('First question:', response.question)
     addMessage(response.question)
@@ -43,15 +44,25 @@ const start = async () => {
 const addMessage = async (text, ignoreReply) => {
   try {
     document.querySelector('textarea').value = text
-    await new Promise(r => setTimeout(r, 1000))
+    await new Promise(r => setTimeout(r, 2000))
     document.querySelector('textarea + button').click()
     await new Promise(r => setTimeout(r, 1000))
     await waitCompleteResponse()
     if (ignoreReply) {
       return
     }
-    const proses = document.getElementsByClassName('prose')
-    const reply = proses[proses.length-1].innerText
+    let reply
+    while (true) {
+      console.log('Looking for reply')
+      await new Promise(r => setTimeout(r, 1000))
+      const proses = document.getElementsByClassName('prose')
+      if (proses.length == 0) {
+        console.log('Cant find reply!')
+        continue
+      }
+      reply = proses[proses.length-1].innerText
+      break
+    }
     await new Promise(r => setTimeout(r, 1000 * reply.split(' ').length/5))
     await browser.runtime.sendMessage({type: 'replied', text: reply})
   } catch(e) {
