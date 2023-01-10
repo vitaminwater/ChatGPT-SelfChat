@@ -10,19 +10,25 @@
     }
 
     .root {
-      height: 300px;
+      height: 400px;
       width: 400px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: stretch;
+      align-items: stretch;
       background-size: cover;
       background-repeat: no-repeat;
     }
 
     .root__wrapper {
       flex: 1;
+      flex-direction: column;
       text-align: center;
+      padding-top: 20px;
+    }
+
+    .root__wrapper > b {
+      margin: 10px 0;
     }
 
     .root__wrapper__h2 {
@@ -42,12 +48,19 @@
     
     .menu {
       display: flex;
+      justify-content: center;
       margin: 5px 0;
     }
     
     .menu > a {
       margin-right: 5px;
       font-size: 0.7em;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 20px;
     }
   </style>
 </head>
@@ -73,7 +86,10 @@
       <input type='text' id='talker-2-name' type='text' placeholder='ex: Joe' /><br />
       <textarea id='talker-2-greeting'></textarea>
     </div>
-    <button id='start'>Start</button>
+    <div class='buttons'>
+      <button id='reset'>Reset all</button>
+      <button id='start'>Start</button>
+    </div>
   </div>
 
   <script src="popup.js"></script>

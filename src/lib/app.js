@@ -5,13 +5,15 @@ if (typeof browser === "undefined") {
 const showTab = (name) => {
 }
 
-const tabData = {
+const defaultTabData = {
   'question': '',
   'talker-1-name': 'Phil',
   'talker-1-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. Here's the problem you want to resolve:\n\n"{firstMessage}".`,
   'talker-2-name': 'Joe',
   'talker-2-greeting': `Ok today your name is {name} and you will be discussing with {other}, you're both associates and know each other well. You are discussing like humans, so no bullet points, only paragraphs, be short and concise and don't repeat yourself or what {other} says. Here is {other}'s first message:\n\n"{firstMessage}".`,
 }
+
+const tabData = Object.assign({}, defaultTabData)
 
 const saveTabData = () => {
   window.localStorage.setItem("tabData", JSON.stringify(tabData))
@@ -45,6 +47,11 @@ export class App {
     document.getElementById('start').addEventListener('click', (e) => {
       const question = document.getElementById('question').value
       browser.runtime.sendMessage(Object.assign({ type: "start"}, tabData))
+    })
+    document.getElementById('reset').addEventListener('click', (e) => {
+      Object.assign(tabData, defaultTabData)
+      saveTabData()
+      setupValues()
     })
     Array.from(document.getElementsByClassName('tab')).forEach(t => {
       document.getElementById(t.id).addEventListener('click', (e) => {
