@@ -25,8 +25,9 @@ const start = async () => {
         nMessages++
         if (first && isReplier) {
           await addMessage(greeting.replaceAll('{name}', name).replaceAll('{other}', other).replaceAll('{firstMessage}', message.text))
+        } else {
+          await addMessage(message.text)
         }
-        await addMessage(message.text)
       }
     } catch(e) {
       console.log(e)
