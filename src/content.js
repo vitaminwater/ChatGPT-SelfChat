@@ -42,6 +42,7 @@ const start = async () => {
 const addMessage = async (text, ignoreReply) => {
   try {
     document.querySelector('textarea').value = text
+    await new Promise(r => setTimeout(r, 1000))
     document.querySelector('textarea + button').click()
     await new Promise(r => setTimeout(r, 1000))
     await waitCompleteResponse()
