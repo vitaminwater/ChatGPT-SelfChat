@@ -1,3 +1,7 @@
+# ChatGPT Self Chat
+
+Quick&Dirty browser extension to make two chatGPT instances talk to each other.
+
 # How to install
 
 1. Unzip the [archive zip](https://github.com/vitaminwater/ChatGPT-SelfChat/releases) on your computer.
