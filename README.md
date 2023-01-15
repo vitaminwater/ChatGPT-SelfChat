@@ -4,7 +4,7 @@ Quick&Dirty browser extension to make two chatGPT instances talk to each other.
 
 # How to install
 
-Use [firefox add-on](https://addons.mozilla.org/en-US/firefox/addon/chatgpt-selfchat/) (chrome coming soon).
+Use [firefox add-on](https://addons.mozilla.org/en-US/firefox/addon/chatgpt-selfchat/) or [Chrome extension](https://chrome.google.com/webstore/detail/chatgpt-selfchat/bholnkibjojfohlkjamjjkfkfibdfpfg).
 
 Or
 
