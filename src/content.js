@@ -8,6 +8,7 @@ const start = async () => {
   let name, other, greeting
 
   console.log('Start')
+  addMessageLinkedIn("pouet")
   browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     try {
       console.log('Received message content: ', message)
@@ -41,7 +42,7 @@ const start = async () => {
   })
 }
 
-const addMessage = async (text, ignoreReply) => {
+const addMessageChatGPT = async (text, ignoreReply) => {
   try {
     document.querySelector('textarea').value = text
     await new Promise(r => setTimeout(r, 2000))
@@ -67,6 +68,50 @@ const addMessage = async (text, ignoreReply) => {
     await browser.runtime.sendMessage({type: 'replied', text: reply})
   } catch(e) {
     console.log(e)
+  }
+}
+
+function simulateKeyPresses(str) {
+  for (let i = 0; i < str.length; i++) {
+    let event = document.createEvent('Event')
+    event.key = str[i]
+    event.initEvent('keydown')
+    document.getElementsByClassName('msg-form__contenteditable')[0].dispatchEvent(event);
+  }
+}
+
+const addMessageLinkedIn = async (text, ignoreReply) => {
+  try {
+    console.log('addMessageLinkedIn')
+    await new Promise(r => setTimeout(r, 2000))
+    console.log('click div', document.getElementsByClassName('msg-form__contenteditable'))
+    document.getElementsByClassName('msg-form__contenteditable')[0].focus()
+    await new Promise(r => setTimeout(r, 2000))
+    document.dispatchEvent(new KeyboardEvent('keypress', {'key': 'a'}));
+    document.getElementsByClassName('msg-form__contenteditable')[0].dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'}));
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+          'key': 'b'
+    }));
+    window.dispatchEvent(new KeyboardEvent('message', {
+          key: "b",
+          keyCode: 66,
+          code: "KeyE",
+          which: 66,
+          shiftKey: false,
+          ctrlKey: false,
+          metaKey: false
+    }));
+    console.log('done')
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+const addMessage = async (text, ignoreReply) => {
+  if (document.location.href.indexOf('linkedin.com') != -1) {
+    addMessageLinkedIn(text, ignoreReply)
+  } else {
+    addMessageChatGPT(text, ignoreReply)
   }
 }
 

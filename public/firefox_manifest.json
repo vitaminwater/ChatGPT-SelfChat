@@ -14,6 +14,14 @@
     {
       "matches": ["https://chat.openai.com/chat"],
       "js": ["content.js"]
+    },
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content.js"]
+    }, 
+    {
+      "matches": ["https://www.messenger.com/*"],
+      "js": ["content.js"]
     }
   ],
   "browser_action": {

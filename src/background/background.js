@@ -10,6 +10,12 @@ const startChat = () => {
     try {
       console.log('Received message backend: ', message)
       if (message.type == 'start') {
+        const tab = (await new Promise(r => browser.tabs.query({
+          active: true,
+          lastFocusedWindow: true
+        }, r)))[0]
+        console.log('tab', tab)
+
         chatData = message
         let win1 = await new Promise(r => browser.windows.create({
           url: 'https://chat.openai.com/chat',
@@ -19,14 +25,19 @@ const startChat = () => {
           height: 1000,
         }, r))
         tabs[0] = win1.tabs[0]
-        const win2 = await new Promise(r => browser.windows.create({
-          url: 'https://chat.openai.com/chat',
-          left: 900,
-          top: 0,
-          width: 900,
-          height: 1000,
-        }, r))
-        tabs[1] = win2.tabs[0];
+        console.log('sender.tab', sender)
+        if (tab.url.indexOf('linkedin.com') != -1) {
+          tabs[1] = tab
+        } else {
+          const win2 = await new Promise(r => browser.windows.create({
+            url: 'https://chat.openai.com/chat',
+            left: 900,
+            top: 0,
+            width: 900,
+            height: 1000,
+          }, r))
+          tabs[1] = win2.tabs[0];
+        }
       } else if (message.type == 'ready') {
         if (sender.tab.id == tabs[0].id) {
           console.log('Sending question to first tab: ', chatData.question)
