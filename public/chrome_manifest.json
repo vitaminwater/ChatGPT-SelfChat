@@ -3,12 +3,19 @@
   "version": "1.0.1",
   "description": "Makes two instances of chatGPT chat together in two different browser windows.",
   "permissions": [
+    "tabs",
     "declarativeContent"
   ],
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/chat"],
+      "js": ["content.js"]
+    }
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
